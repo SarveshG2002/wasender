@@ -1,0 +1,33 @@
+<script>
+    let menus = document.querySelectorAll(".mmenu");
+
+    menus.forEach((menu) => {
+        menu.addEventListener('click', function () {
+            const subMenu = this.querySelector('.sub-menu'); // Get the sub-menu of the clicked menu
+            const isVisible = !subMenu.classList.contains('hidden'); // Check if the sub-menu is visible
+
+            // Hide all other sub-menus first
+            document.querySelectorAll('.sub-menu').forEach((submenu) => {
+                submenu.classList.add('hidden');
+            });
+
+            document.querySelectorAll('.fa-angle-left').forEach((arrow) => {
+                arrow.classList.add('rotate-180');
+                arrow.classList.remove('rotate-[270deg]');
+            });
+
+            let arrow = menu.querySelector(".fa-angle-left")
+            // If this sub-menu was hidden, show it
+            if (isVisible) {
+                subMenu.classList.add('hidden');
+                arrow.classList.add("rotate-180")
+                arrow.classList.remove("rotate-[270deg]")
+                
+            } else {
+                subMenu.classList.remove('hidden');
+                arrow.classList.remove("rotate-180")
+                arrow.classList.add("rotate-[270deg]")
+            }
+        });
+    });
+</script>

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<%- include('include/header') %>
 
 <body class="bg-[#f4f5fa] font-sans">
 
+    <%- include('include/navbar') %>
 
+    <div class="w-full h-[93vh] flex">
+        <!-- Sidebar -->
+        <%- include('include/sidebar') %>
+        <!-- Main Content -->
+        <div class="flex-grow">
+
+        </div>
+    </div>
+
+    <%- include('include/footer') %>
 
 </body>
 
