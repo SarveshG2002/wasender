@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path'); // To handle file paths
-const adminRoutes = require('./routes/adminRoutes');
+const adminRoutes = require('./routes/admin/adminRoutes');
 const bodyParser = require('body-parser'); // To parse form data
 const session = require('express-session'); // Import the session middleware
+const mongoose = require('mongoose'); 
 const Helper = require('./helper/Helper'); // Import Helper class
 const app = express();
 const port = 3000;
@@ -17,6 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+const dbURI = 'mongodb://localhost:27017/wasender'; // Change this to your MongoDB URI
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB connected');
+    })
+    .catch((err) => {
+        console.log('Error connecting to MongoDB:', err);
+    });
+
 // const helper = new Helper();
 
 app.use(session({
@@ -29,6 +39,8 @@ app.use(session({
 app.use((req, res, next) => {
     res.locals.session = req.session; // Attach session data to res.locals, accessible in all views
     res.locals.helper = new Helper(req);
+    // req
+    // req.refferer = req.get('referer')
     next();
 });
 

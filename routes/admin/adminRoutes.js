@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const moduleRoutes = require('./moduleRoutes');
+
 
 // Define an admin route
-router.get('/dashboard', (req, res) => {
-  res.render('admin/dashboard'); // Render an admin dashboard page
-});
+
 
 
 router.get('/login', (req, res) => {
@@ -26,6 +26,13 @@ router.post('/login', (req, res) => {
     res.redirect('/admin/login');
   }
 });
+
+
+router.get('/dashboard', (req, res) => {
+  res.render('admin/dashboard'); // Render an admin dashboard page
+});
+
+router.use('/module', moduleRoutes);
 
 // You can add more admin-specific routes here
 
