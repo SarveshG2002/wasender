@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/c01abb6312.js" crossorigin="anonymous"></script>
+    <style>
+        .font-purple {
+            color: #8d3abc;
+        }
+
+        .s-selected {
+            background: linear-gradient(to right, #dcc3eb, #8d3abc);
+            color: white;
+        }
+
+        .mmenu .s-selected:first-child {
+            background: rgb(198, 198, 198);
+            color: #6b7280;
+        }
+
+
+    </style>
+</head>
+
+<body class="bg-[#f4f5fa] font-sans">
+
+    <nav class="flex h-[7vh] items-center px-[5px]">
+        <div class="info w-[15%] h-full items-center flex">
+            <img src="/public/assets/logo.png" class="w-[50px] h-[50px]" alt="">
+            <span class="text-2xl font-bold font-purple">
+                WASENDER
+            </span>
+        </div>
+        <div class="info h-full items-center flex flex-grow">
+        </div>
+        <div class="info w-[15%] h-full items-center flex ml-auto justify-end text-2xl">
+            <i class="fa-regular fa-bell"></i>&emsp;
+            <img src="/public/assets/logo.png" class="w-[50px] h-[50px]" alt="">
+        </div>
+    </nav>
+
+    <div class="w-full h-[93vh] flex">
+        <!-- Sidebar -->
+        <aside class="w-[220px] h-full flex flex-col pt-[10px] gap-2 text-gray-500">
+            <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5">Dashboard</span>
+            </div>
+
+            <!-- First Menu -->
+            <div class="mmenu flex flex-col gap-1 cursor-pointer">
+                <div class="smenu flex p-[10px]  pl-[20px] items-center rounded-r-3xl font-bold">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5">Admins</span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu hidden pl-5">
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Admins List</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add Admin</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Admin Logs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Menu -->
+            <div class="mmenu flex flex-col gap-1 cursor-pointer">
+                <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5">Users</span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu hidden pl-5">
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Users List</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add User</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">User Logs</span>
+                    </div>
+                </div>
+                <div class="sub-menu hidden pl-5">
+                    
+                </div>
+            </div>
+
+            <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5">Devices</span>
+            </div>
+
+            
+            <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5">Messages</span>
+            </div>
+
+            <!-- Second Menu -->
+            <div class="mmenu flex flex-col gap-1 cursor-pointer">
+                <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5">Api</span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu hidden pl-5">
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Api List</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add Api</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Expired Api</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Api Logs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5">System Setting</span>
+            </div>
+
+
+            <div class="mmenu flex flex-col gap-1 cursor-pointer">
+                <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5">Modules</span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu hidden pl-5">
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Module List</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add Module</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Page List</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add Page</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Roles</span>
+                    </div>
+                    <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                        <i class="fa-regular fa-circle"></i>
+                        <span class="ml-5">Add Role</span>
+                    </div>
+                </div>
+            </div>
+            
+
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-grow">
+
+        </div>
+    </div>
+
+    <script>
+        let menus = document.querySelectorAll(".mmenu");
+
+        menus.forEach((menu) => {
+            menu.addEventListener('click', function () {
+                const subMenu = this.querySelector('.sub-menu'); // Get the sub-menu of the clicked menu
+                const isVisible = !subMenu.classList.contains('hidden'); // Check if the sub-menu is visible
+
+                // Hide all other sub-menus first
+                document.querySelectorAll('.sub-menu').forEach((submenu) => {
+                    submenu.classList.add('hidden');
+                });
+
+                document.querySelectorAll('.fa-angle-left').forEach((arrow) => {
+                    arrow.classList.add('rotate-180');
+                    arrow.classList.remove('rotate-[270deg]');
+                });
+
+                let arrow = menu.querySelector(".fa-angle-left")
+                // If this sub-menu was hidden, show it
+                if (isVisible) {
+                    subMenu.classList.add('hidden');
+                    arrow.classList.add("rotate-180")
+                    arrow.classList.remove("rotate-[270deg]")
+                    
+                } else {
+                    subMenu.classList.remove('hidden');
+                    arrow.classList.remove("rotate-180")
+                    arrow.classList.add("rotate-[270deg]")
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
