@@ -44,5 +44,15 @@
     </div>
   </div>
 
+
+  <script>
+    <% if (session.error) { %>
+    
+      console.log("session","<%= session.error %>")
+      <%= helper.clearErrorSuccess() %>;
+    
+    <% } %>
+  </script>
+
 </body>
 </html>
