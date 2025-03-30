@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+  <!-- Main Container -->
+  <div class="bg-white rounded-lg shadow-lg p-8 space-y-6 w-full sm:w-96">
+    <!-- Logo Section -->
+    <div class="text-center mb-4">
+      <h1 class="text-3xl font-semibold text-indigo-600">MyApp</h1>
+      <p class="text-gray-500">Please log in to your account.</p>
+    </div>
+
+    <!-- Login Form -->
+    <form method="post">
+      <!-- Email Input -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" id="email" name="username" class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-indigo-500" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Password Input -->
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:ring-indigo-500" placeholder="Enter your password" required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="w-full py-3 mt-4 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700">
+        Log In
+      </button>
+    </form>
+
+    <!-- Sign Up Link -->
+    <div class="text-center mt-4">
+      <p class="text-sm text-gray-600">Don't have an account? 
+        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-500">Sign Up</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
