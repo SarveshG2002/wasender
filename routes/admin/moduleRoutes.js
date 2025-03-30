@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/add-module', (req, res) => {
-    res.render('admin/add-module'); // Render an admin dashboard page
+    res.render('admin/module/add-module'); // Render an admin dashboard page
 });
 
 router.get('/module-list', async(req, res) => {
@@ -59,6 +59,13 @@ router.get('/del-module/:id', async (req, res) => {
     finally{
         return res.redirect(req.get('referer'));
     }
+});
+
+
+
+router.get('/add-page', async (req, res) => {
+    // const modules = await moduleModel.find();
+    res.render('admin//module/add-page'); // Render an admin dashboard page
 });
 
 // You can add more admin-specific routes here

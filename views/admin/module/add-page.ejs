@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../include/header') %>
+
+    <body class="bg-[#f4f5fa] font-sans">
+
+        <%- include('../include/navbar') %>
+
+            <div class="w-full h-[93vh] flex">
+                <!-- Sidebar -->
+                <%- include('../include/sidebar') %>
+                    <!-- Main Content -->
+                    <div class="flex-grow p-10">
+                        <div class="bread text-xl">
+                            Module/Pages
+                        </div>
+
+                        <div class="m-container">
+                            <form action="" method="POST">
+                                <div class="mb-4 w-1/2">
+                                    <label for="moduleName" class="block text-lg font-semibold text-gray-700">Page
+                                        Name</label>
+                                    <input type="text" id="moduleName" name="name"
+                                        class="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        placeholder="Enter Module Name">
+                                </div>
+
+                                <div class="mb-4 w-1/2">
+                                    <label for="moduleName" class="block text-lg font-semibold text-gray-700">Module
+                                        </label>
+                                    <select name="module" id="module">
+                                        
+                                    </select>
+                                </div>
+                                <div class="mt-6">
+                                    <button type="submit"
+                                        class="w-full p-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="m-container">
+                            <div class="table-responsive">
+                                <table class="table" id="table">
+                                    <thead>
+                                        
+                                        <tr>
+                                            <th>
+                                                Sr.
+                                            </th>
+                                            <th>
+                                                Module Name
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+            </div>
+
+            <%- include('../include/footer') %>
+
+                <script>
+                    async function getModules() {
+                        const response = await fetch("/admin/module/module-list");
+
+                        const data = await response.json(); // Parse the JSON response
+                        let tbody = document.getElementById("table").querySelector("tbody");
+                        tbody.innerHTML = "Loading....."
+                        if(data.success){
+                            let html = "<tr><td colspan=3 class='text-center'>No Record Found.</td><tr>"; 
+                            if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+                                html = ""
+                            }
+                            
+                            data.data.forEach((module,i) => {
+                                html += `
+                                    <tr>
+                                        <td>${i+1}</td>
+                                        <td>${module.name}</td>
+                                        <td>
+                                                <a href="del-module/${module._id}">
+                                                    <i class="fa fa-trash text-red-500">     </i> 
+                                                </a>  
+                                            
+                                        </td>
+                                    </tr>
+                                `
+                            });
+
+                            
+
+                            tbody.innerHTML = html
+                        }else{
+                            tbody.innerHTML = "Something Wen't Wrong"
+                        }
+
+                    }
+                    getModules();
+                </script>
+
+    </body>
+
+</html>
