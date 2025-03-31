@@ -94,6 +94,88 @@ router.post('/add-page', async (req, res) => {
 
 });
 
+router.get('/page-list', async(req, res) => {
+    // res.render('admin/add-module'); // Render an admin dashboard page
+    try{
+        const pages = await PageModel.find();
+        return res.json({success:true,data:pages})
+    }catch{
+        return res.json({success:false})
+    }
+});
+
+router.get('/del-page/:id', async (req, res) => {
+    const { id } = req.params; // Get the module id from the URL params
+
+    try {
+        const page = await PageModel.findByIdAndDelete(id); // Find and delete the module by ID
+
+        if (page) {
+            req.session.success = "Page deleted successfully"; // Success message in session
+            
+        } else {
+            req.session.error = "PAge not found"; 
+        }
+    } catch (error) {
+        // console.error('Error deleting module:', error);
+        req.session.error = "Something went wrong, please try again"; // General error message
+        
+    }
+    finally{
+        return res.redirect(req.get('referer'));
+    }
+});
+
+
+router.get('/add-role', async (req, res) => {
+    try {
+        const modules = await ModuleModel.find();
+
+        // Fetch pages for each module
+        const modulesWithPages = await Promise.all(
+            modules.map(async (module) => {
+                const pages = await PageModel.find({ module: module._id }); // Fetch pages for each module
+                return { ...module.toObject(), pages }; // Convert to object and add pages
+            })
+        );
+
+        res.render('admin/module/add-role', { modules: modulesWithPages }); // Pass modules with their pages
+    } catch (error) {
+        console.error("Error fetching roles:", error);
+        res.status(500).send("Server error");
+    }
+});
+
+router.post("/add-role", async (req, res) => {
+    const { role_name, desc, page } = req.body;
+
+    if (!role_name || !desc || !Array.isArray(page)) {
+        req.session.error = "Invalid input data";
+        return res.redirect(req.get('referer')); // Redirect back
+    }
+
+    try {
+        // Step 1: Create the role and get its ID
+        const newRole = new RoleModel({ name: role_name, description: desc });
+        const savedRole = await newRole.save();
+
+        // Step 2: Insert role-pages mapping
+        const rolePagesData = page.map(pageId => ({
+            role: savedRole._id,
+            page: pageId
+        }));
+
+        await RolePageModel.insertMany(rolePagesData);
+
+        req.session.success = "Role added successfully!";
+    } catch (error) {
+        console.error(error);
+        req.session.error = "Something went wrong!";
+    }
+
+    return res.redirect(req.get('referer')); // Redirect back
+});
+
 
 
 // You can add more admin-specific routes here

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../include/header') %>
+
+    <body class="bg-[#f4f5fa] font-sans">
+
+        <%- include('../include/navbar') %>
+
+            <div class="w-full h-[93vh] flex">
+                <!-- Sidebar -->
+                <%- include('../include/sidebar') %>
+                    <!-- Main Content -->
+                    <div class="flex-grow p-10">
+                        <div class="bread text-xl">
+                            Module/Pages
+                        </div>
+
+                        <div class="m-container">
+                            <form action="" method="POST">
+                                <div class="mb-4 w-1/2">
+                                    <label for="role_name" class="block text-lg font-semibold text-gray-700">
+                                         Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="role_name" name="role_name" value=""
+                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        placeholder="Enter Role Name" required>
+                                </div>
+            
+                                <div class="mb-4 w-1/2">
+                                    <label for="desc" class="block text-lg font-semibold text-gray-700">Description</label>
+                                    <textarea id="desc" name="desc"
+                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        placeholder="Enter Description"></textarea>
+                                </div>
+            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="bg-yellow-100">
+                                                <th>Sr. No</th>
+                                                <th>Modules</th>
+                                                <th>Select All</th>
+                                                <th>Specific Permissions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% modules.forEach((module, i) => { %>
+                                                <tr>
+                                                    <td><%= i + 1 %></td>
+                                                    <td><%= module.name %></td>
+                                                    <td>
+                                                        <input type="checkbox" id="module<%= module.id %>" onclick="checkall('<%= module.id %>')">&ensp;
+                                                        <label for="module<%= module.id %>">Select Master</label>
+                                                    </td>
+                                                    <td>
+                                                        
+                                                            <% module.pages.forEach(page => { %>
+                                                                <input type="checkbox" name="page[]" value="<%= page.id %>"
+                                                                    id="page<%= page.id %>" class="page<%= module.id %>"
+                                                                    >
+                                                                <label for="page<%= page.id %>"><%= page.name %></label>
+                                                                <br>
+                                                            <% }); %>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            <% }); %>
+                                        </tbody>
+                                    </table>
+                                </div>
+            
+                                <div class="mt-6">
+                                    
+                                        <button type="submit" name="updateRole"
+                                            class="w-full p-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                            Update
+                                        </button>
+                                    
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+            </div>
+
+        <%- include('../include/footer') %>
+
+        <script>
+            function checkall(id) {
+                const masterCheckbox = document.getElementById(`module${id}`);
+                const checkboxes = document.querySelectorAll(`.page${id}`);
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = masterCheckbox.checked;
+                });
+            }
+        </script>
+
+    </body>
+
+</html>
