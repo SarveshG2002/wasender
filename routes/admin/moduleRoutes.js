@@ -94,15 +94,32 @@ router.post('/add-page', async (req, res) => {
 
 });
 
-router.get('/page-list', async(req, res) => {
-    // res.render('admin/add-module'); // Render an admin dashboard page
-    try{
+router.get('/page-list', async (req, res) => {
+    try {
+        // Fetch all pages
         const pages = await PageModel.find();
-        return res.json({success:true,data:pages})
-    }catch{
-        return res.json({success:false})
+        
+        // Fetch all modules
+        const modules = await ModuleModel.find(); 
+
+        // Map pages and replace module ID with module name
+        const pagesWithModuleNames = pages.map(page => {
+            const module = modules.find(m => m._id.toString() === page.module.toString()); 
+            return {
+                ...page.toObject(),
+                module: module ? module.name : null  // Replace ObjectId with module name
+            };
+        });
+
+        return res.json({ success: true, data: pagesWithModuleNames });
+
+    } catch (error) {
+        console.error(error);
+        return res.json({ success: false, message: "Something went wrong" });
     }
 });
+
+
 
 router.get('/del-page/:id', async (req, res) => {
     const { id } = req.params; // Get the module id from the URL params
