@@ -1,144 +1,44 @@
 <aside class="w-[220px] h-full flex flex-col pt-[10px] gap-2 text-gray-500">
-    <a class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold" href="/admin/dashboard">
-        <i class="fa-solid fa-house-user"></i>
-        <span class="ml-5">Dashboard</span>
-    </a>
-
-    <!-- First Menu -->
-    <div class="mmenu flex flex-col gap-1 cursor-pointer">
-        <div class="smenu flex p-[10px]  pl-[20px] items-center rounded-r-3xl font-bold">
-            <i class="fa-solid fa-house-user"></i>
-            <span class="ml-5">Admins</span>
-            <div class="icon ml-auto">
-                <i class="fa-solid fa-angle-left rotate-180"></i>
-                &nbsp;
-            </div>
-        </div>
-        <!-- Sub-menu (Initially hidden) -->
-        <div class="sub-menu hidden pl-5">
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Admins List</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Add Admin</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Admin Logs</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Second Menu -->
-    <div class="mmenu flex flex-col gap-1 cursor-pointer">
-        <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-            <i class="fa-solid fa-house-user"></i>
-            <span class="ml-5">Users</span>
-            <div class="icon ml-auto">
-                <i class="fa-solid fa-angle-left rotate-180"></i>
-                &nbsp;
-            </div>
-        </div>
-        <!-- Sub-menu (Initially hidden) -->
-        <div class="sub-menu hidden pl-5">
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Users List</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Add User</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">User Logs</span>
-            </div>
-        </div>
-        <div class="sub-menu hidden pl-5">
-            
-        </div>
-    </div>
-
-    <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
-        <i class="fa-solid fa-house-user"></i>
-        <span class="ml-5">Devices</span>
-    </div>
-
     
-    <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
-        <i class="fa-solid fa-house-user"></i>
-        <span class="ml-5">Messages</span>
-    </div>
-
-    <!-- Second Menu -->
-    <div class="mmenu flex flex-col gap-1 cursor-pointer">
-        <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-            <i class="fa-solid fa-house-user"></i>
-            <span class="ml-5">Api</span>
-            <div class="icon ml-auto">
-                <i class="fa-solid fa-angle-left rotate-180"></i>
-                &nbsp;
-            </div>
-        </div>
-        <!-- Sub-menu (Initially hidden) -->
-        <div class="sub-menu hidden pl-5">
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Api List</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Add Api</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Expired Api</span>
-            </div>
-            <div class="p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Api Logs</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold">
-        <i class="fa-solid fa-house-user"></i>
-        <span class="ml-5">System Setting</span>
-    </div>
-
-
-    <div class="mmenu flex flex-col gap-1 cursor-pointer">
-        <div class="smenu sselected flex p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-            <i class="fa-solid fa-house-user"></i>
-            <span class="ml-5">Modules</span>
-            <div class="icon ml-auto">
-                <i class="fa-solid fa-angle-left rotate-180"></i>
-                &nbsp;
-            </div>
-        </div>
-        <!-- Sub-menu (Initially hidden) -->
-        <div class="sub-menu hidden pl-5">
-            
-            <a href = "/admin/module/add-module" class="block p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Modules</span>
+    <% 
+    let sidebar = helper.sidebar();
+    for (let category in sidebar) { 
+        let obj = sidebar[category];
+        if(obj["single"]){
+            %>
+            <a class="smenu cursor-pointer sselected p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold" href="<%= obj['pages'][0]['link'] %>">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5"><%= category %></span>
             </a>
-            <a href = "/admin/module/add-page" class="block p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Pages</span>
-            </a>
-            <a href="/admin/module/add-role" class="block p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Roles</span>
-            </a>
-            <a href="/admin/module/role-list" class="block p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
-                <i class="fa-regular fa-circle"></i>
-                <span class="ml-5">Role List</span>
-            </a>
-        </div>
-    </div>
+            <%
+        }else{
+            %>
+            <div class="mmenu flex flex-col gap-1 cursor-pointer">
+                <div class="smenu flex p-[10px]  pl-[20px] items-center rounded-r-3xl font-bold">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5"><%= category %></span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu hidden pl-5">
+
+                    <% obj["pages"].forEach((page, i) => { %>
+                        <a href="<%= page['link'] %>" class="block p-[10px] pl-[20px] items-center rounded-r-3xl font-bold">
+                            <i class="fa-regular fa-circle"></i>
+                            <span class="ml-5"><%= page["name"] %></span>
+                        </a>
+                    <% }); %>
+
+                   
+                    
+                </div>
+            </div>
+            <%
+        }
+     } %>
     
 
 </aside>

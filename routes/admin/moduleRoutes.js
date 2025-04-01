@@ -219,7 +219,7 @@ router.get('/role-list', async (req, res) => {
     } catch (error) {
         rolesWithPages = [];
     }
-    console.log(rolesWithPages)
+    // console.log(rolesWithPages)
     res.render('admin/module/role-list', { roles: rolesWithPages });
 });
 
