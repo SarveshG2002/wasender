@@ -50,14 +50,14 @@
                                                     <td><%= i + 1 %></td>
                                                     <td><%= module.name %></td>
                                                     <td>
-                                                        <input type="checkbox" id="module<%= module.id %>" onclick="checkall('<%= module.id %>')">&ensp;
-                                                        <label for="module<%= module.id %>">Select Master</label>
+                                                        <input type="checkbox" id="module<%= module._id %>" onclick="checkall('<%= module.id %>')">&ensp;
+                                                        <label for="module<%= module._id %>">Select Master</label>
                                                     </td>
                                                     <td>
                                                         
                                                             <% module.pages.forEach(page => { %>
                                                                 <input type="checkbox" name="page[]" value="<%= page.id %>"
-                                                                    id="page<%= page.id %>" class="page<%= module.id %>"
+                                                                    id="page<%= page.id %>" class="page<%= module._id %>"
                                                                     >
                                                                 <label for="page<%= page.id %>"><%= page.name %></label>
                                                                 <br>

@@ -194,6 +194,34 @@ router.post("/add-role", async (req, res) => {
 });
 
 
+router.get('/role-list', async (req, res) => {
+    let rolesWithPages = [];
+    try {
+        const roles = await RoleModel.find();
+        
+        rolesWithPages = await Promise.all(
+            roles.map(async (role) => {
+                const rolePages = await RolePageModel.find({ role: role._id });
+                const pageIds = rolePages.map(rp => rp.page);
+                const pages = await PageModel.find({ _id: { $in: pageIds } });
+                const pageNames = pages.map(page => page.name);
+                
+                return {
+                    name: role.name,
+                    description: role.description,
+                    pages: pageNames.join(', ')
+                };
+            })
+        );
+
+        
+    } catch (error) {
+        rolesWithPages = [];
+    }
+    res.render('admin/module/role-list', { roles: rolesWithPages });
+});
+
+
 
 // You can add more admin-specific routes here
 

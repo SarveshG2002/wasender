@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../include/header') %>
+<body class="bg-[#f4f5fa] font-sans">
+    <%- include('../include/navbar') %>
+    <div class="w-full h-[93vh] flex">
+        <%- include('../include/sidebar') %>
+        <div class="flex-grow p-10">
+            <div class="bread text-xl">
+                Role List
+            </div>
+
+            <div class="m-container">
+                <div class="table-responsive">
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Role Name</th>
+                                <th>Role Description</th>
+                                <th>Role Pages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% roles.forEach((role, i) => { %>
+                                <tr>
+                                    <td><%= i+1 %></td>
+                                    <td><%= role.name %></td>
+                                    <td><%= role.description %></td>
+                                    <td><%= role.pages %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../include/footer') %>
+</body>
+</html>
