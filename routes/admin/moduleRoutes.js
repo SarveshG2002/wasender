@@ -207,6 +207,7 @@ router.get('/role-list', async (req, res) => {
                 const pageNames = pages.map(page => page.name);
                 
                 return {
+                    id: role._id,
                     name: role.name,
                     description: role.description,
                     pages: pageNames.join(', ')
@@ -218,7 +219,27 @@ router.get('/role-list', async (req, res) => {
     } catch (error) {
         rolesWithPages = [];
     }
+    console.log(rolesWithPages)
     res.render('admin/module/role-list', { roles: rolesWithPages });
+});
+
+router.get('/del-role/:id', async (req, res) => {
+    try {
+        const roleId = req.params.id;
+
+        // Step 1: Delete role-pages mappings first
+        await RolePageModel.deleteMany({ role: roleId });
+
+        // Step 2: Delete the role
+        await RoleModel.findByIdAndDelete(roleId);
+
+        req.session.success = "Role deleted successfully!";
+    } catch (error) {
+        console.error(error);
+        req.session.error = "Something went wrong while deleting the role.";
+    }
+
+    return res.redirect(req.get('referer'));
 });
 
 
