@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
 
 
 router.get('/dashboard', (req, res) => {
-  res.render('admin/dashboard'); // Render an admin dashboard page
+  res.render('admin/dashboard',{pageTitle:"Dashboard"}); // Render an admin dashboard page
 });
 
 router.use('/module', moduleRoutes);

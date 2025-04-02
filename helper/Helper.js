@@ -9,6 +9,25 @@ class Helper {
       this.req.session.success = null; // Unset the session success message
     }
 
+    checkpageModule(module,page){
+      let modulePage = this.sidebar()[module]["pages"];
+      // modulePage.forEach(element => {
+      //   if(element["name"]==page){
+      //     return true;
+      //   }
+      // });
+      // console.log(modulePage);
+      for(let i=0;i<modulePage.length;i++){
+        // console.log(modulePage[i],page)
+        if(modulePage[i]["name"]==page){
+          return true;
+        }
+      }
+
+      return false;
+
+    }
+
     sidebar(){
       let sidebar = {
         "Dashboard":{
@@ -59,7 +78,7 @@ class Helper {
             {name:"Modules",link:"/admin/module/add-module"},
             {name:"Pages",link:"/admin/module/add-page"},
             {name:"Roles",link:"/admin/module/add-role"},
-            {name:"Role List",link:"/admin/module/role-list"}
+            {name:"Role List",link:"/admin/module/role-list"},
           ],
           single:false
         },

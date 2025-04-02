@@ -39,6 +39,7 @@ app.use(session({
 app.use((req, res, next) => {
     res.locals.session = req.session; // Attach session data to res.locals, accessible in all views
     res.locals.helper = new Helper(req);
+    // req.session.helper = res.locals.helper;
     // req
     // req.refferer = req.get('referer')
     next();

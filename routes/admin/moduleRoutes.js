@@ -5,11 +5,13 @@ const RoleModel = require("../../models/role")
 const RolePageModel = require("../../models/rolePages")
 
 
+
 const router = express.Router();
 
 
 router.get('/add-module', (req, res) => {
-    res.render('admin/module/add-module'); // Render an admin dashboard page
+
+    res.render('admin/module/add-module',{pageTitle:"Modules"}); // Render an admin dashboard page
 });
 
 router.get('/module-list', async(req, res) => {
@@ -69,7 +71,7 @@ router.get('/del-module/:id', async (req, res) => {
 
 router.get('/add-page', async (req, res) => {
     // const modules = await moduleModel.find();
-    res.render('admin//module/add-page'); // Render an admin dashboard page
+    res.render('admin//module/add-page',{pageTitle:"Pages"}); // Render an admin dashboard page
 });
 
 router.post('/add-page', async (req, res) => {
@@ -156,7 +158,7 @@ router.get('/add-role', async (req, res) => {
             })
         );
 
-        res.render('admin/module/add-role', { modules: modulesWithPages }); // Pass modules with their pages
+        res.render('admin/module/add-role', { pageTitle:"Roles",modules: modulesWithPages }); // Pass modules with their pages
     } catch (error) {
         console.error("Error fetching roles:", error);
         res.status(500).send("Server error");
@@ -219,8 +221,8 @@ router.get('/role-list', async (req, res) => {
     } catch (error) {
         rolesWithPages = [];
     }
-    // console.log(rolesWithPages)
-    res.render('admin/module/role-list', { roles: rolesWithPages });
+
+    res.render('admin/module/role-list', { pageTitle:"Role List",roles: rolesWithPages });
 });
 
 router.get('/del-role/:id', async (req, res) => {
