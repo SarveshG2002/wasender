@@ -3,21 +3,75 @@
 
 <%- include('../include/header') %>
 
-<body class="bg-[#f4f5fa] font-sans">
+    <body class="bg-[#f4f5fa] font-sans">
 
-    <%- include('../include/navbar') %>
+        <%- include('../include/navbar') %>
 
-    <div class="w-full h-[93vh] flex">
-        <!-- Sidebar -->
-        <%- include('../include/sidebar') %>
-        <!-- Main Content -->
-        <div class="flex-grow p-10">
+            <div class="w-full h-[93vh] flex">
+                <!-- Sidebar -->
+                <%- include('../include/sidebar', { pageTitle: pageTitle }) %> 
+                    <!-- Main Content -->
+                    <div class="flex-grow p-10">
+                        <div class="bread text-xl">
+                            Module/Pages
+                        </div>
 
-        </div>
-    </div>
+                        <div class="m-container">
+                            <form action="" method="POST">
 
-    <%- include('../include/footer') %>
+                                <div class="flex gap-5">
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="name" class="block text-lg font-semibold text-gray-700">Package
+                                            Name</label>
+                                        <input type="text" id="name" name="name"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Package Name">
+                                    </div>
+                                </div>
 
-</body>
+                                <div class="flex">
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="ruqests" class="block text-lg font-semibold text-gray-700">Total
+                                            Request</label>
+                                        <input type="text" id="ruqests" name="ruqests"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Total Request">
+                                    </div>
+    
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="ruqests" class="block text-lg font-semibold text-gray-700">
+                                            Request Period</label>
+                                        <select name="" id="" class="mt-2 selectElement">
+                                            <% 
+                                            helper.packagePeriod().forEach((period,i)=>{
+                                                %>
+                                                    <option value="<%=period%>"><%=period%></option>
+                                                <%
+                                            })
+                                            %>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6">
+                                    <button type="submit"
+                                        class="w-full p-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                       
+
+
+                    </div>
+            </div>
+
+        <%- include('../include/footer') %>
+
+
+    </body>
 
 </html>

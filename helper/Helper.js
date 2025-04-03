@@ -95,6 +95,10 @@ class Helper {
 
     };
 
+    packagePeriod(){
+      return ["Minute","Hour","Day","Month"];
+    }
+
     
 
   }
