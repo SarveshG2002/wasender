@@ -19,7 +19,7 @@
                         <div class="m-container">
                             <form action="" method="POST">
 
-                                <div class="flex gap-5">
+                                <div class="flex">
                                     <div class="mb-4 w-1/2 px-2">
                                         <label for="name" class="block text-lg font-semibold text-gray-700">Package
                                             Name</label>
@@ -27,9 +27,6 @@
                                             class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                             placeholder="Enter Package Name">
                                     </div>
-                                </div>
-
-                                <div class="flex">
                                     <div class="mb-4 w-1/2 px-2">
                                         <label for="ruqests" class="block text-lg font-semibold text-gray-700">Total
                                             Request</label>
@@ -37,10 +34,14 @@
                                             class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                             placeholder="Enter Total Request">
                                     </div>
+                                </div>
+
+                                <div class="flex">
+                                    
     
                                     <div class="mb-4 w-1/2 px-2">
                                         <label for="ruqests" class="block text-lg font-semibold text-gray-700">
-                                            Request Period</label>
+                                            Request Per Period</label>
                                         <select name="" id="" class="mt-2 selectElement">
                                             <% 
                                             helper.packagePeriod().forEach((period,i)=>{
@@ -51,6 +52,48 @@
                                             %>
                                             
                                         </select>
+                                    </div>
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="delay" class="block text-lg font-semibold text-gray-700">Time
+                                            Delay</label>
+                                        <input type="number" id="delay" name="delay"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Total Request">
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="pricePerMonth" class="block text-lg font-semibold text-gray-700">Pricing Per Month</label>
+                                        <input type="number" id="pricePerMonth" name="pricePerMonth"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Price Per Month">
+                                    </div>
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="pricePer3Month" class="block text-lg font-semibold text-gray-700">Pricing Per 3 Month</label>
+                                        <input type="number" id="pricePer3Month" name="pricePer3Month"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Price Per 3 Month">
+                                    </div>
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="pricePer6Month" class="block text-lg font-semibold text-gray-700">Pricing Per 6 Month</label>
+                                        <input type="number" id="pricePer6Month" name="pricePer6Month"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Price Per 6 Month">
+                                    </div>
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="pricePerYear" class="block text-lg font-semibold text-gray-700">Pricing Per Year</label>
+                                        <input type="number" id="pricePerYear" name="pricePerYear"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Price Per Year">
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="description" class="block text-lg font-semibold text-gray-700">Description</label>
+                                        <textarea name="description" id="description" class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
                                     </div>
                                 </div>
 
