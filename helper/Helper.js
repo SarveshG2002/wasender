@@ -72,6 +72,13 @@ class Helper {
           ],
           single:false
         },
+        "Package":{
+          icon:"",
+          pages:[
+            {name:"Add Package",link:"/admin/package/add-package"}
+          ],
+          single:false
+        },
         "Modules":{
           icon:"",
           pages:[
