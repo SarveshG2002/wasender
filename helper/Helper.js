@@ -9,23 +9,21 @@ class Helper {
       this.req.session.success = null; // Unset the session success message
     }
 
+    async getDateTime(format="Y-m-d H:i:s"){
+      let res = await fetch(`https://wheeltimeapi.teamrudra.com/getCurrentDate.php?format=${format}`)
+      res  = await res.text();
+      return res;
+    }
+
+
     checkpageModule(module,page){
       let modulePage = this.sidebar()[module]["pages"];
-      // modulePage.forEach(element => {
-      //   if(element["name"]==page){
-      //     return true;
-      //   }
-      // });
-      // console.log(modulePage);
       for(let i=0;i<modulePage.length;i++){
-        // console.log(modulePage[i],page)
         if(modulePage[i]["name"]==page){
           return true;
         }
       }
-
       return false;
-
     }
 
     sidebar(){
