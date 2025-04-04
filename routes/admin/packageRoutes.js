@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Package = require('../../models/package'); // Import Package model
+const PackageModel = require('../../models/package'); // Import Package model
 
 // Render Add Package Form
 router.get('/add-package', (req, res) => {
     res.render('admin/package/add-package', { pageTitle: "Add Package" });
+});
+
+router.get('/package-list', async (req, res) => {
+  const packages = await PackageModel.find();
+  res.render('admin/package/package-list', { pageTitle: "Package List",packages });
 });
 
 // Handle Form Submission
@@ -14,7 +19,7 @@ router.post('/add-package', async (req, res) => {
         const { name, ruqests, requestPerPeriod, delay, pricePerMonth, pricePer3Month, pricePer6Month, pricePerYear, description } = req.body;
         let datetime = await res.locals.helper.getDateTime("Y-m-d H:i:s")
         // Create new package
-        const newPackage = new Package({
+        const newPackage = new PackageModel({
             name,
             totalRequests: ruqests,
             requestPerPeriod,
