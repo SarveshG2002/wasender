@@ -9,7 +9,7 @@
 
             <div class="w-full h-[93vh] flex">
                 <!-- Sidebar -->
-                <%- include('../include/sidebar', { pageTitle: pageTitle }) %> 
+                <%- include('../include/sidebar', { pageTitle: pageTitle }) %>
                     <!-- Main Content -->
                     <div class="flex-grow p-10">
                         <div class="bread text-xl">
@@ -27,10 +27,10 @@
                                             class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                             placeholder="Enter Package Name">
                                     </div>
-                                    
+
                                 </div>
 
-                                
+
 
                                 <div class="responsive-table">
                                     <table class="table">
@@ -68,88 +68,116 @@
                                                         placeholder="Enter Price Per Year">
                                                 </td>
                                             </tr>
-                                
+
                                             <!-- Total Requests Row -->
                                             <tr>
                                                 <th>Total Requests</th>
-                                                <td><input type="number" name="totalRequestsPerMonth" placeholder="Total Requests" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="totalRequestsPer3Month" placeholder="Total Requests" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="totalRequestsPer6Month" placeholder="Total Requests" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="totalRequestsPerYear" placeholder="Total Requests" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPerMonth"
+                                                        placeholder="Total Requests"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPer3Month"
+                                                        placeholder="Total Requests"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPer6Month"
+                                                        placeholder="Total Requests"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPerYear"
+                                                        placeholder="Total Requests"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
                                             </tr>
-                                
-                                            <!-- Request Per Period Row -->
-                                            <!-- Request Per Period Row -->
-<tr>
-    <th>Request Per Period</th>
-    <td>
-        <select name="requestPerPeriod" id="requestPerMonth" class="mt-2 selectElement">
-            <% 
-            helper.packagePeriod().forEach((period, i) => { 
-            %>
-                <option value="<%= period %>"><%= period %></option>
-            <% 
-            }) 
-            %>
-        </select>
-    </td>
-    <td>
-        <select name="requestPerPeriod" id="requestPer3Month" class="mt-2 selectElement">
-            <% 
-            helper.packagePeriod().forEach((period, i) => { 
-            %>
-                <option value="<%= period %>"><%= period %></option>
-            <% 
-            }) 
-            %>
-        </select>
-    </td>
-    <td>
-        <select name="requestPerPeriod" id="requestPer6Month" class="mt-2 selectElement">
-            <% 
-            helper.packagePeriod().forEach((period, i) => { 
-            %>
-                <option value="<%= period %>"><%= period %></option>
-            <% 
-            }) 
-            %>
-        </select>
-    </td>
-    <td>
-        <select name="requestPerPeriod" id="requestPerYear" class="mt-2 selectElement">
-            <% 
-            helper.packagePeriod().forEach((period, i) => { 
-            %>
-                <option value="<%= period %>"><%= period %></option>
-            <% 
-            }) 
-            %>
-        </select>
-    </td>
-</tr>
 
-                                
+                                            <!-- Request Per Period Row -->
+                                            <!-- Request Per Period Row -->
+                                            <tr>
+                                                <th>Request Per Period</th>
+                                                <td>
+                                                    <select name="requestPerPeriodMonth" id="requestPerMonth"
+                                                        class="mt-2 selectElement">
+                                                        <% helper.packagePeriod().forEach((period, i)=> {
+                                                            %>
+                                                            <option value="<%= period %>">
+                                                                <%= period %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="requestPerPeriod3Month" id="requestPer3Month"
+                                                        class="mt-2 selectElement">
+                                                        <% helper.packagePeriod().forEach((period, i)=> {
+                                                            %>
+                                                            <option value="<%= period %>">
+                                                                <%= period %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="requestPerPeriod6Month" id="requestPer6Month"
+                                                        class="mt-2 selectElement">
+                                                        <% helper.packagePeriod().forEach((period, i)=> {
+                                                            %>
+                                                            <option value="<%= period %>">
+                                                                <%= period %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="requestPerPeriodYear" id="requestPerYear"
+                                                        class="mt-2 selectElement">
+                                                        <% helper.packagePeriod().forEach((period, i)=> {
+                                                            %>
+                                                            <option value="<%= period %>">
+                                                                <%= period %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+
                                             <!-- Time Delay Row -->
                                             <tr>
                                                 <th>Time Delay</th>
-                                                <td><input type="number" name="delayPerMonth" placeholder="Time Delay (in months)" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="delayPer3Month" placeholder="Time Delay (in months)" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="delayPer6Month" placeholder="Time Delay (in months)" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
-                                                <td><input type="number" name="delayPerYear" placeholder="Time Delay (in months)" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPerMonth"
+                                                        placeholder="Time Delay (in months)"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPer3Month"
+                                                        placeholder="Time Delay (in months)"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPer6Month"
+                                                        placeholder="Time Delay (in months)"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPerYear"
+                                                        placeholder="Time Delay (in months)"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
                                             </tr>
-                                
+
                                             <!-- Description Row -->
                                             <tr>
                                                 <th>Description</th>
-                                                <td><textarea name="descriptionPerMonth" placeholder="Description for Monthly Package" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea></td>
-                                                <td><textarea name="descriptionPer3Month" placeholder="Description for 3 Month Package" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea></td>
-                                                <td><textarea name="descriptionPer6Month" placeholder="Description for 6 Month Package" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea></td>
-                                                <td><textarea name="descriptionPerYear" placeholder="Description for Yearly Package" class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea></td>
+                                                <td><textarea name="descriptionPerMonth"
+                                                        placeholder="Description for Monthly Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPer3Month"
+                                                        placeholder="Description for 3 Month Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPer6Month"
+                                                        placeholder="Description for 6 Month Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPerYear"
+                                                        placeholder="Description for Yearly Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></textarea>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
 
                                 <div class="mt-6">
                                     <button type="submit"
@@ -160,13 +188,13 @@
                             </form>
                         </div>
 
-                       
+
 
 
                     </div>
             </div>
 
-        <%- include('../include/footer') %>
+            <%- include('../include/footer') %>
 
 
     </body>

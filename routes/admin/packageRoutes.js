@@ -15,34 +15,90 @@ router.get('/package-list', async (req, res) => {
 // Handle Form Submission
 router.post('/add-package', async (req, res) => {
     try {
-      console.log(req.body)
-        const { name, ruqests, requestPerPeriod, delay, pricePerMonth, pricePer3Month, pricePer6Month, pricePerYear, description } = req.body;
-        let datetime = await res.locals.helper.getDateTime("Y-m-d H:i:s")
-        // Create new package
-        const newPackage = new PackageModel({
+        console.log(req.body);
+
+        const {
             name,
-            totalRequests: ruqests,
-            requestPerPeriod,
-            timeDelay: delay,
+
+            // Prices
             pricePerMonth,
             pricePer3Month,
             pricePer6Month,
             pricePerYear,
-            description,
+
+            // Total Requests
+            totalRequestsPerMonth,
+            totalRequestsPer3Month,
+            totalRequestsPer6Month,
+            totalRequestsPerYear,
+
+            // Requests Per Period
+            requestPerPeriodMonth,
+            requestPerPeriod3Month,
+            requestPerPeriod6Month,
+            requestPerPeriodYear,
+
+            // Time Delays
+            delayPerMonth,
+            delayPer3Month,
+            delayPer6Month,
+            delayPerYear,
+
+            // Descriptions
+            descriptionPerMonth,
+            descriptionPer3Month,
+            descriptionPer6Month,
+            descriptionPerYear
+        } = req.body;
+
+        const datetime = await res.locals.helper.getDateTime("Y-m-d H:i:s");
+
+        const newPackage = new PackageModel({
+            name,
+
+            // Prices
+            pricePerMonth,
+            pricePer3Month,
+            pricePer6Month,
+            pricePerYear,
+
+            // Total Requests
+            totalRequestsPerMonth,
+            totalRequestsPer3Month,
+            totalRequestsPer6Month,
+            totalRequestsPerYear,
+
+            // Requests Per Period
+            requestPerMonth:requestPerPeriodMonth,
+            requestPer3Month:requestPerPeriod3Month,
+            requestPer6Month:requestPerPeriod6Month,
+            requestPerYear:requestPerPeriodYear,
+
+            // Time Delays
+            delayPerMonth,
+            delayPer3Month,
+            delayPer6Month,
+            delayPerYear,
+
+            // Descriptions
+            descriptionPerMonth,
+            descriptionPer3Month,
+            descriptionPer6Month,
+            descriptionPerYear,
+
             datetime
         });
 
-        await newPackage.save(); // Save to DB
+        await newPackage.save();
 
         req.session.success = "Package added successfully!";
-        // res.redirect('/admin/add-package'); // Redirect to same page
     } catch (error) {
         console.error(error);
         req.session.error = "Something went wrong!";
-        // return res.redirect(req.get('referer'));
     }
 
     return res.redirect(req.get('referer'));
 });
+
 
 module.exports = router;
