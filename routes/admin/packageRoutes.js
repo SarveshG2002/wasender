@@ -100,5 +100,19 @@ router.post('/add-package', async (req, res) => {
     return res.redirect(req.get('referer'));
 });
 
+router.get('/del-package/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await PackageModel.findByIdAndDelete(id);
+
+        req.session.success = "Package deleted successfully!";
+    } catch (error) {
+        console.error(error);
+        req.session.error = "Something went wrong while deleting!";
+    }
+
+    return res.redirect(req.get('referer'));
+});
 
 module.exports = router;
