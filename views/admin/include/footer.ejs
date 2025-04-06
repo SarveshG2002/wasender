@@ -43,6 +43,15 @@
         })
     }
 
+    function showLoader() {
+            document.getElementById('loader').classList.remove('hidden');
+        }
+
+        // Function to hide the loader
+        function hideLoader() {
+            document.getElementById('loader').classList.add('hidden');
+        }
+
     setSelected();    
 
     <% if (session.error) { %>
