@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path'); // To handle file paths
 const adminRoutes = require('./routes/admin/adminRoutes');
+const commonRoutes = require('./routes/common/commonRoutes');
 const bodyParser = require('body-parser'); // To parse form data
 const session = require('express-session'); // Import the session middleware
 const mongoose = require('mongoose'); 
@@ -71,6 +72,8 @@ app.get('/login', (req, res) => {
 
 
 app.use('/admin', adminRoutes);
+app.use('/', commonRoutes);
+
 
 // Start the server
 app.listen(port, () => {

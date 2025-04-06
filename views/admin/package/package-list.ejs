@@ -58,7 +58,161 @@
         // console.log(data)
         async function showPackage(id){
             showLoader();
-            console.log(id)
+
+            let data = await fetch(`/package/${id}`)
+            let res = await data.json();
+            if(res.success){
+                data = res.data;
+                let html = `
+                    <div class="m-container">
+                            <div>
+
+                                <div class="flex">
+                                    <div class="mb-4 w-1/2 px-2">
+                                        <label for="name" class="block text-lg font-semibold text-gray-700">Package
+                                            Name</label>
+                                        <input type="text" id="name" name="name" disabled value="${data.name}"
+                                            class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                            placeholder="Enter Package Name">
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="responsive-table">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Monthly Package</th>
+                                                <th>3 Month Package</th>
+                                                <th>6 Month Package</th>
+                                                <th>Yearly Package</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Price Row -->
+                                            <tr>
+                                                <th>Price</th>
+                                                <td>
+                                                    <input type="number" id="pricePerMonth" name="pricePerMonth" disabled value="${data.pricePerMonth}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePer3Month" name="pricePer3Month" disabled value="${data.pricePer3Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per 3 Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePer6Month" name="pricePer6Month" disabled value="${data.pricePer6Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per 6 Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePerYear" name="pricePerYear" disabled value="${data.pricePerYear}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per Year">
+                                                </td>
+                                            </tr>
+
+                                            <!-- Total Requests Row -->
+                                            <tr>
+                                                <th>Total Requests</th>
+                                                <td><input type="number" name="totalRequestsPerMonth"
+                                                        placeholder="Total Requests" disabled value="${data.totalRequestsPerMonth}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPer3Month"
+                                                        placeholder="Total Requests" disabled value="${data.totalRequestsPer3Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPer6Month"
+                                                        placeholder="Total Requests" disabled value="${data.totalRequestsPer6Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="totalRequestsPerYear"
+                                                        placeholder="Total Requests" disabled value="${data.totalRequestsPerYear}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                            </tr>
+
+                                            <!-- Request Per Period Row -->
+                                            <!-- Request Per Period Row -->
+                                            <tr>
+                                                <th>Request Per Period</th>
+                                                <td>
+                                                    <input type="number" id="pricePerMonth" name="pricePerMonth" disabled value="${data.pricePerMonth}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePer3Month" name="pricePer3Month" disabled value="${data.pricePer3Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per 3 Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePer6Month" name="pricePer6Month" disabled value="${data.pricePer6Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per 6 Month">
+                                                </td>
+                                                <td>
+                                                    <input type="number" id="pricePerYear" name="pricePerYear" disabled value="${data.pricePerYear}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                        placeholder="Enter Price Per Year">
+                                                </td>
+                                            </tr>
+
+
+                                            <!-- Time Delay Row -->
+                                            <tr>
+                                                <th>Time Delay</th>
+                                                <td><input type="number" name="delayPerMonth"
+                                                        placeholder="Time Delay (in months)" disabled value="${data.delayPerMonth}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPer3Month"
+                                                        placeholder="Time Delay (in months)" disabled value="${data.delayPer3Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPer6Month"
+                                                        placeholder="Time Delay (in months)" disabled value="${data.delayPer6Month}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                                <td><input type="number" name="delayPerYear"
+                                                        placeholder="Time Delay (in months)" disabled value="${data.delayPerYear}"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg"></td>
+                                            </tr>
+
+                                            <!-- Description Row -->
+                                            <tr>
+                                                <th>Description</th>
+                                                <td><textarea name="descriptionPerMonth"
+                                                        placeholder="Description for Monthly Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg" disabled>${data.descriptionPerMonth}</textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPer3Month"
+                                                        placeholder="Description for 3 Month Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg" disabled>${data.descriptionPer3Month}</textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPer6Month"
+                                                        placeholder="Description for 6 Month Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg" disabled>${data.descriptionPer6Month}</textarea>
+                                                </td>
+                                                <td><textarea name="descriptionPerYear"
+                                                        placeholder="Description for Yearly Package"
+                                                        class="mt-2 p-2 w-full border border-gray-300 rounded-lg" disabled>${data.descriptionPerYear}</textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                `
+
+                openModal("Package",html)
+            }else{
+                toastr.error(res.message)
+            }
+            hideLoader();
+            
+            console.log(res)
         }
     </script>
 </body>

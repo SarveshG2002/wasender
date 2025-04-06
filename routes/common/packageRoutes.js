@@ -8,7 +8,7 @@ router.get('/package-list', async (req, res) => {
     return res.json({success:true,data:packages})
 });
 
-router.get('/package/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params; // Get the id parameter from the URL
     try {
         const package = await PackageModel.findById(id); // Find the package by its _id

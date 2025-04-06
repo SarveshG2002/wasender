@@ -23,7 +23,7 @@
                 subMenu.classList.add('hidden');
                 arrow.classList.add("rotate-180")
                 arrow.classList.remove("rotate-[270deg]")
-                
+
             } else {
                 subMenu.classList.remove('hidden');
                 arrow.classList.remove("rotate-180")
@@ -32,25 +32,60 @@
         });
     });
 
-    function setSelected(bod=null){
-        if(bod==null){
+    function setSelected(bod = null) {
+        if (bod == null) {
             bod = document;
         }
-        bod.querySelectorAll(".selectElement").forEach((ele,i)=>{
-           new SlimSelect({
+        bod.querySelectorAll(".selectElement").forEach((ele, i) => {
+            new SlimSelect({
                 select: ele
             })
         })
     }
 
     function showLoader() {
-            document.getElementById('loader').classList.remove('hidden');
-        }
+        document.getElementById('loader').classList.remove('hidden');
+    }
 
-        // Function to hide the loader
-        function hideLoader() {
-            document.getElementById('loader').classList.add('hidden');
-        }
+    // Function to hide the loader
+    function hideLoader() {
+        document.getElementById('loader').classList.add('hidden');
+    }
+
+    function openModal(title,html) {
+        const modal = document.getElementById('myModal');
+        let content = `
+            <div class="relative flex justify-center items-start pt-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg w-1/2 min-w-[500px]">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="text-2xl font-semibold mb-4">${title}</h2>
+                    </div>
+                    
+                    <!-- Divider (Horizontal Rule) -->
+                    <hr class="mb-2 border-t-2 border-gray-300" />
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        ${html}
+                    </div>
+
+                    <!-- Close Button -->
+                    <button onclick="closeModal()" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        `
+        modal.innerHTML = content;
+        modal.classList.remove('hidden'); // Show the modal
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        const modal = document.getElementById('myModal');
+        modal.classList.add('hidden'); // Hide the modal
+    }
 
     setSelected();    
 
@@ -59,8 +94,8 @@
         <%= helper.clearErrorSuccess() %>
     <% } %>
     <% if (session.success) { %>
-    toastr.success("<%= session.success %>")
+        toastr.success("<%= session.success %>")
         <%= helper.clearErrorSuccess() %>
     <% } %>
-    
+
 </script>
