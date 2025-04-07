@@ -17,30 +17,35 @@
             </div>
 
             <div class="m-container">
-                <form action="" method="POST">
+                <form action="" method="POST" id="form">
                     <div class="flex">
-                        <div class="mb-4 w-2/3 px-2">
+                        <div class="mb-4 w-1/2 px-2">
                             <label for="name" class="block text-lg font-semibold text-gray-700">User Name</label>
                             <input type="text" id="name" name="name"
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 placeholder="Enter User Name">
                         </div>
-                        <div class="mb-4 w-2/3 px-2">
+                        <div class="mb-4 w-1/2 px-2">
                             <label for="email" class="block text-lg font-semibold text-gray-700">User Email</label>
                             <input type="email" id="email" name="email"
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 placeholder="Enter User Email">
                         </div>
-                        <div class="mb-4 w-2/3 px-2">
+                        
+                    </div>
+                    <div class="flex">
+                        <div class="mb-4 w-1/2 px-2">
                             <label for="phone" class="block text-lg font-semibold text-gray-700">User Phone</label>
                             <input type="text" id="phone" name="phone"
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 placeholder="Enter Phone">
                         </div>
-                    </div>
-                    <div class="flex">
-                        <div class="mb-4 w-2/3 px-2">
-                            
+                    
+                        <div class="mb-4 w-1/2 px-2">
+                            <label for="package" class="block text-lg font-semibold text-gray-700 ">Package</label>
+                            <select name="package" id="package" class="selectElement mt-2 p-2 w-full">
+
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -50,6 +55,42 @@
     </div>
 
     <%- include('../include/footer') %>
+    <script>
+        
+
+        var packageSelect = new SlimSelect({
+            select: document.getElementById("package")
+            })
+
+async function getForm(){
+
+}
+
+        async function getPackage() {
+            let res = await fetch("/admin/package/package-list-ajax")
+            res = await res.json()
+            console.log(res)
+            if(res.success){
+                let data = [];
+                res.data.forEach(element => {
+                    data.push({text:element.name,value:element._id})
+                });
+                console.log(data)
+                packageSelect.setData([
+  {text: 'Value 1', value: 'value1'},
+  {text: 'Value 2', value: 'value2'},
+  {
+    label: 'Group 1',
+    options: [
+      {text: 'Value 3', value: 'value3'},
+      {text: 'Value 4', value: 'value4'},
+    ]
+  }
+])
+            }
+        }
+        getPackage();
+    </script>
 
 </body>
 

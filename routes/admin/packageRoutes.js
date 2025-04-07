@@ -11,6 +11,15 @@ router.get('/package-list', async (req, res) => {
   const packages = await PackageModel.find();
   res.render('admin/package/package-list', { pageTitle: "Package List",packages });
 });
+router.get('/package-list-ajax', async (req, res) => {
+    try{
+        const packages = await PackageModel.find();
+        // res.render('admin/package/package-list', { pageTitle: "Package List",packages });
+        return res.json({ success: true, data: packages });
+    }catch{
+        return res.json({ success: false });
+    }
+});
 
 // Handle Form Submission
 router.post('/add-package', async (req, res) => {
