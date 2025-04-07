@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const moduleRoutes = require('./moduleRoutes');
 const packageRoutes = require('./packageRoutes');
+const userRoutes = require('./userRoutes');
 
 
 // Define an admin route
@@ -35,6 +36,7 @@ router.get('/dashboard', (req, res) => {
 
 router.use('/module', moduleRoutes);
 router.use('/package', packageRoutes);
+router.use('/user', userRoutes);
 
 
 // You can add more admin-specific routes here

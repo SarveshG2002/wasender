@@ -45,6 +45,7 @@ class Helper {
         "Users":{
           icon:"",
           pages:[
+            {name:"Add User",link:"/admin/user/add"},
             {name:"Users",link:""},{name:"User Logs",link:""}
           ],
           single:false
