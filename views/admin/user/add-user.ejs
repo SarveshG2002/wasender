@@ -48,6 +48,14 @@
                             </select>
                         </div>
                     </div>
+                    <div class="flex">
+                        <div class="mb-4 w-1/2 px-2">
+                            <label for="subPackage" class="block text-lg font-semibold text-gray-700 ">Sub Package</label>
+                            <select name="subPackage" id="subPackage" class="mt-2 p-2 w-full" onchange="checkPackage()">
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="flex justify-end">
                         <button type="submit"
                             class="w-fit p-2 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
@@ -64,8 +72,11 @@
     <script>
         
 
-        var packageSelect
+        var packageSelect;
+        var subPackageSelect;
         var packageElement = document.getElementById("package")
+        var subPackageElement = document.getElementById("subPackage")
+        var subPackages = [];
             
 
         async function checkPackage(){
@@ -82,6 +93,7 @@
                 packageElement.innerHTML = "";
                 let data = [];
                 let opt = "";
+                subPackages = res.data;
                 res.data.forEach(element => {
                     data.push({text:element.name,value:element._id})
                     // opt=opt+`
@@ -94,10 +106,24 @@
                 packageSelect = new SlimSelect({
                     select: packageElement
                 })
-                packageSelect.setData(data)
-                
+                packageSelect.setData(data)       
             }
         }
+
+        async function getSubPackage(id) {
+            if(packageElement.value!="Custom"){
+                for(let i=0;i<subPackages.length;i++){
+                    let ele = subPackages[i] 
+                    if(ele._id==id){
+                        // return ele;
+                        console.log(ele)
+                    }
+                }
+            }
+            // return [];
+            
+        }
+
         getPackage();
     </script>
 
