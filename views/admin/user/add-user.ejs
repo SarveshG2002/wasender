@@ -43,10 +43,16 @@
                     
                         <div class="mb-4 w-1/2 px-2">
                             <label for="package" class="block text-lg font-semibold text-gray-700 ">Package</label>
-                            <select name="package" id="package" class="mt-2 p-2 w-full">
+                            <select name="package" id="package" class="mt-2 p-2 w-full" onchange="checkPackage()">
 
                             </select>
                         </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="w-fit p-2 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            Submit
+                        </button>
                     </div>
                 </form>
             </div>
@@ -59,31 +65,36 @@
         
 
         var packageSelect
+        var packageElement = document.getElementById("package")
             
 
-async function getForm(){
+        async function checkPackage(){
+            if(packageElement.value=="Custom"){
 
-}
+            }
+        }
 
         async function getPackage() {
             let res = await fetch("/admin/package/package-list-ajax")
             res = await res.json()
             console.log(res)
             if(res.success){
-                document.getElementById("package").innerHTML = "";
+                packageElement.innerHTML = "";
                 let data = [];
                 let opt = "";
                 res.data.forEach(element => {
                     data.push({text:element.name,value:element._id})
-                    opt=opt+`
-                    <option value="${element._id}">${element.name}</option>
-                    `
+                    // opt=opt+`
+                    // <option value="${element._id}">${element.name}</option>
+                    // `
                 });
-                document.getElementById("package").innerHTML = opt;
-                console.log(data)
+                // document.getElementById("package").innerHTML = opt;
+                data.push({text:"Custom",value:"Custom"})
+                // console.log(data)
                 packageSelect = new SlimSelect({
-                    select: document.getElementById("package")
+                    select: packageElement
                 })
+                packageSelect.setData(data)
                 
             }
         }
