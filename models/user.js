@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
         type: String, // Can be '1M', '3M', '6M', '1Y' or anything else
         required: false
     },
+    status :{
+      type:String,
+      default:1  
+    },
 
     datetime: { type: String },
 }, { timestamps: true });

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UserModel = require('../../models/User'); // Adjust path as needed
+const UserModel = require('../../models/user'); // Adjust path as needed
 
 // GET: Render the add-user page
 router.get('/add', (req, res) => {

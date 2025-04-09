@@ -61,6 +61,22 @@ app.use('/admin', (req, res, next) => {
     next();
 });
 
+app.use('/user', (req, res, next) => {
+    // If the URL is '/admin/login', skip the middleware
+    if (req.url === '/login') {
+        return next();
+    }
+
+    // Check if user is logged in by verifying session
+    if (!req.session.user || req.session.usertype !== "customer") {
+        req.session.destroy();
+        return res.redirect('/user/login'); // Redirect to login page if not logged in
+    }
+
+    // Proceed to the next middleware/route if logged in
+    next();
+});
+
 // Define the root route
 app.get('/', (req, res) => {
     res.send('Hello');

@@ -1,31 +1,61 @@
 const express = require('express');
 const router = express.Router();
-// const packageRoutes = require('../common/packageRoutes');
+const UserModel = require('../../models/user'); // Adjust path if needed
 
-// router.use('/package', packageRoutes);
-
-
-// You can add more admin-specific routes here
-
-
+// Login GET
 router.get('/login', (req, res) => {
-    res.render('user/login'); // Render an admin dashboard page
+    res.render('user/login'); 
 });
 
-router.post('/login', (req, res) => {
+// Login POST
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-  
-    // Check if the credentials match
-    if (username === 'admin@gmail.com' && password === '1234') {
-      req.session.username = username;
-      req.session.role = 1; // Assigning role '1' for admin
-      req.session.success = "Login successFull"
-      res.redirect('/admin/dashboard'); // If correct, redirect to the dashboard
-    } else {
-      // If incorrect, render the login page again with an error message
-      req.session.error = "Username or password is incorrect"
-      res.redirect('/admin/login');
+    // console.log(req.body);
+    try {
+        const user = await UserModel.findOne({ email:username });
+        // console.log(user)
+        if (!user) {
+            req.session.error = 'Invalid email or password';
+            return res.redirect('/user/login');
+        }
+
+        if (user.password != password) {
+            req.session.error = 'Invalid email or password';
+            return res.redirect('/user/login');
+        }
+
+        // Save user session
+        req.session.user = {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            package: user.package,
+            subPackage: user.subPackage
+        };
+
+        req.session.usertype = "customer"
+
+        req.session.success = 'Logged in successfully!';
+        return res.redirect('/user/dashboard');
+
+    } catch (err) {
+        console.error('Login Error:', err);
+        req.session.error = 'Something went wrong!';
+        return res.redirect('/user/login');
     }
-  });
+});
+
+// Dashboard GET (After Login)
+router.get('/dashboard', (req, res) => {
+    if (!req.session.user) {
+        req.session.error = "Please login first!";
+        return res.redirect('/user/login');
+    }
+
+    res.render('user/dashboard', {
+        pageTitle: "Dashboard",
+        user: req.session.user
+    });
+});
 
 module.exports = router;
