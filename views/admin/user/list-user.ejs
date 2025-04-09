@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../include/header') %>
+
+<body class="bg-[#f4f5fa] font-sans">
+    <%- include('../include/navbar') %>
+
+    <div class="w-full h-[93vh] flex">
+        <%- include('../include/sidebar', { pageTitle }) %>
+
+        <div class="flex-grow p-10">
+            <div class="bread text-xl">
+                User/<%= pageTitle %>
+            </div>
+
+            <div class="m-container mt-6">
+                <div class="table-responsive">
+                    <table class="table w-full" id="table">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="p-2 text-left">Sr. No</th>
+                                <th class="p-2 text-left">Name</th>
+                                <th class="p-2 text-left">Email</th>
+                                <th class="p-2 text-left">Phone</th>
+                                <th class="p-2 text-left">Package</th>
+                                <th class="p-2 text-left">Sub Package</th>
+                                <th class="p-2 text-left">Date Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach((user, index) => { %>
+                                <tr class="border-b">
+                                    <td class="p-2"><%= index + 1 %></td>
+                                    <td class="p-2"><%= user.name %></td>
+                                    <td class="p-2"><%= user.email %></td>
+                                    <td class="p-2"><%= user.phone %></td>
+                                    <td class="p-2"><%= user.package %></td>
+                                    <td class="p-2"><%= user.subPackage %></td>
+                                    <td class="p-2"><%= user.createdAt %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../include/footer') %>
+</body>
+</html>

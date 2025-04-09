@@ -46,7 +46,7 @@ class Helper {
           icon:"",
           pages:[
             {name:"Add User",link:"/admin/user/add"},
-            {name:"Users",link:""},{name:"User Logs",link:""}
+            {name:"User List",link:"/admin/user/list"},{name:"User Logs",link:""}
           ],
           single:false
         },

@@ -1,14 +1,60 @@
 const express = require('express');
 const router = express.Router();
-// const packageRoutes = require('./packageRoutes');
+const UserModel = require('../../models/User'); // Adjust path as needed
 
-// router.use('/package', packageRoutes);
-
-// You can add more admin-specific routes here
-
+// GET: Render the add-user page
 router.get('/add', (req, res) => {
-    
-    res.render('admin/user/add-user',{pageTitle:"Add User"}); // Render an admin dashboard page
+    res.render('admin/user/add-user', { pageTitle: "Add User" });
+});
+
+// POST: Store user
+router.post('/add', async (req, res) => {
+    try {
+        const {
+            name,
+            email,
+            phone,
+            package: selectedPackage,
+            subPackage
+        } = req.body;
+
+        // Get datetime
+        const datetime = await res.locals.helper.getDateTime("Y-m-d H:i:s");
+
+        // Create new user
+        const newUser = new UserModel({
+            name,
+            email,
+            phone,
+            package: selectedPackage,
+            subPackage,
+            datetime
+        });
+
+        // Save to DB
+        await newUser.save();
+
+        req.session.success = "User added successfully!";
+    } catch (err) {
+        console.error(err);
+        req.session.error = "Something went wrong!";
+    }
+
+    return res.redirect(req.get('referer'));
+});
+
+router.get('/list', async (req, res) => {
+    try {
+        const users = await UserModel.find().sort({ datetime: -1 });
+        res.render('admin/user/list-user', {
+            pageTitle: 'User List',
+            users
+        });
+    } catch (err) {
+        console.error(err);
+        req.session.error = "Unable to fetch user list.";
+        res.redirect('/admin/user/add');
+    }
 });
 
 module.exports = router;

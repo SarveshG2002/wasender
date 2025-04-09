@@ -43,7 +43,7 @@
                     
                         <div class="mb-4 w-1/2 px-2">
                             <label for="package" class="block text-lg font-semibold text-gray-700 ">Package</label>
-                            <select name="package" id="package" class="mt-2 p-2 w-full" onchange="checkPackage()">
+                            <select name="package" id="package" class="mt-2 p-2 w-full" onchange="getSubPackage()">
 
                             </select>
                         </div>
@@ -110,13 +110,27 @@
             }
         }
 
-        async function getSubPackage(id) {
+        async function getSubPackage() {
+            console.log("sub pakage",packageElement.value)
             if(packageElement.value!="Custom"){
                 for(let i=0;i<subPackages.length;i++){
                     let ele = subPackages[i] 
-                    if(ele._id==id){
+                    if(ele._id==packageElement.value){
                         // return ele;
-                        console.log(ele)
+                        // console.log(ele)
+                        subPackageElement.innerHTML = "";
+                        let data = [
+                            {text:"1 Month",value:"1M"},
+                            {text:"3 Month",value:"3M"},
+                            {text:"6 Month",value:"6M"},
+                            {text:"1 Year",value:"1Y"},
+                        ]
+                        subPackageSelect = new SlimSelect({
+                            select: subPackageElement
+                        })
+                        subPackageSelect.setData(data) 
+
+
                     }
                 }
             }
