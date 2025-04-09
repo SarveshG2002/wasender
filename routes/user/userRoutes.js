@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../../models/user'); // Adjust path if needed
+const deviceRoutes = require('./deviceRoute');
+
 
 // Login GET
 router.get('/login', (req, res) => {
@@ -57,5 +59,8 @@ router.get('/dashboard', (req, res) => {
         user: req.session.user
     });
 });
+
+
+router.use('/device', deviceRoutes);
 
 module.exports = router;

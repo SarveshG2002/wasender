@@ -110,7 +110,15 @@ class Helper {
             {"name":"Dashboard","link":""}
           ],
           single:true
-        }
+        },
+        "Devices":{
+          icon:"",
+          pages:[
+            {name:"Add Device",link:"/user/device/add"},
+            {name:"Device List",link:"/user/device/list"}
+          ],
+          single:false
+        },
         
       };
 
