@@ -26,10 +26,9 @@ const UserSchema = new mongoose.Schema({
         type: String, // Can be '1M', '3M', '6M', '1Y' or anything else
         required: false
     },
-    createdAt: {
-        type: String,
-        default: Date.now
-    }
-});
+
+    datetime: { type: String },
+}, { timestamps: true });
+
 
 module.exports = mongoose.model("users", UserSchema);

@@ -20,7 +20,7 @@ router.post('/add', async (req, res) => {
 
         // Get datetime
         const datetime = await res.locals.helper.getDateTime("Y-m-d H:i:s");
-
+        console.log(datetime)
         // Create new user
         const newUser = new UserModel({
             name,
@@ -56,5 +56,19 @@ router.get('/list', async (req, res) => {
         res.redirect('/admin/user/add');
     }
 });
+
+// GET: Delete user
+router.get('/delete/:id', async (req, res) => {
+    try {
+        await UserModel.findByIdAndDelete(req.params.id);
+        req.session.success = "User deleted successfully!";
+    } catch (err) {
+        console.error(err);
+        req.session.error = "Unable to delete user.";
+    }
+
+    res.redirect('/admin/user/list');
+});
+
 
 module.exports = router;
