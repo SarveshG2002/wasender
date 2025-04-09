@@ -1,0 +1,45 @@
+<aside class="w-[220px] h-full flex flex-col pt-[10px] gap-2 text-gray-500">
+    
+    <% 
+    let sidebar = helper.sidebar();
+    for (let category in sidebar) { 
+        let obj = sidebar[category];
+        if(obj["single"]){
+            %>
+            <a class="smenu cursor-pointer <%=(pageTitle==obj['pages'][0]['name'])?'s-selected':''%> p-[10px] pl-[20px] flex items-center text-gray-500 rounded-r-3xl font-bold" href="<%= obj['pages'][0]['link'] %>">
+                <i class="fa-solid fa-house-user"></i>
+                <span class="ml-5"><%= category %></span>
+            </a>
+            <%
+        }else{
+            let check = helper.checkpageModule(category,pageTitle);
+            %>
+            <div class="mmenu flex flex-col gap-1 cursor-pointer ">
+                <div class="smenu flex p-[10px]  pl-[20px] items-center rounded-r-3xl font-bold <%=check?'s-selected':''%>">
+                    <i class="fa-solid fa-house-user"></i>
+                    <span class="ml-5"><%= category %></span>
+                    <div class="icon ml-auto">
+                        <i class="fa-solid fa-angle-left rotate-180"></i>
+                        &nbsp;
+                    </div>
+                </div>
+                <!-- Sub-menu (Initially hidden) -->
+                <div class="sub-menu <%=check?'':'hidden'%> pl-1">
+
+                    <% obj["pages"].forEach((page, i) => { %>
+                        <a href="<%= page['link'] %>" class="block p-[10px] pl-[40px] items-center rounded-r-3xl font-bold <%=(pageTitle==page['name'])?'sm-selected':''%>">
+                            <i class="fa-regular fa-circle"></i>
+                            <span class="ml-5"><%= page["name"] %></span>
+                        </a>
+                    <% }); %>
+
+                   
+                    
+                </div>
+            </div>
+            <%
+        }
+     } %>
+    
+
+</aside>

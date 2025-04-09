@@ -74,7 +74,7 @@ app.get('/login', (req, res) => {
 
 
 app.use('/admin', adminRoutes);
-app.use('/', userRoutes);
+app.use('/user', userRoutes);
 app.use('/', commonRoutes);
 
 

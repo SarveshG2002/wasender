@@ -40,15 +40,23 @@
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 placeholder="Enter Phone">
                         </div>
+                        <div class="mb-4 w-1/2 px-2">
+                            <label for="password" class="block text-lg font-semibold text-gray-700">Password</label>
+                            <input type="password" id="password" name="password"
+                                class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                placeholder="Enter Password">
+                        </div>
+                        
                     
+                        
+                    </div>
+                    <div class="flex">
                         <div class="mb-4 w-1/2 px-2">
                             <label for="package" class="block text-lg font-semibold text-gray-700 ">Package</label>
                             <select name="package" id="package" class="mt-2 p-2 w-full" onchange="getSubPackage()">
 
                             </select>
                         </div>
-                    </div>
-                    <div class="flex">
                         <div class="mb-4 w-1/2 px-2">
                             <label for="subPackage" class="block text-lg font-semibold text-gray-700 ">Sub Package</label>
                             <select name="subPackage" id="subPackage" class="mt-2 p-2 w-full" onchange="checkPackage()">

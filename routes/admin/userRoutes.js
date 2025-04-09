@@ -13,6 +13,7 @@ router.post('/add', async (req, res) => {
         const {
             name,
             email,
+            password,
             phone,
             package: selectedPackage,
             subPackage
@@ -25,6 +26,7 @@ router.post('/add', async (req, res) => {
         const newUser = new UserModel({
             name,
             email,
+            password,
             phone,
             package: selectedPackage,
             subPackage,
