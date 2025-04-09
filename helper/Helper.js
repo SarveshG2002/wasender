@@ -16,8 +16,14 @@ class Helper {
     }
 
 
-    checkpageModule(module,page){
-      let modulePage = this.sidebar()[module]["pages"];
+    checkpageModule(module,page,side = null){
+      // let sidebar = 
+      if(side==null){
+        side= this.sidebar()
+      }else{
+        side = this.userSidebar();
+      }
+      let modulePage = side[module]["pages"];
       for(let i=0;i<modulePage.length;i++){
         if(modulePage[i]["name"]==page){
           return true;
@@ -89,6 +95,23 @@ class Helper {
           ],
           single:false
         },
+      };
+
+      return sidebar;
+
+    };
+
+
+    userSidebar(){
+      let sidebar = {
+        "Dashboard":{
+          icon:"1233",
+          pages:[
+            {"name":"Dashboard","link":""}
+          ],
+          single:true
+        }
+        
       };
 
       return sidebar;

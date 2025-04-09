@@ -1,7 +1,7 @@
 <aside class="w-[220px] h-full flex flex-col pt-[10px] gap-2 text-gray-500">
     
     <% 
-    let sidebar = helper.sidebar();
+    let sidebar = helper.userSidebar();
     for (let category in sidebar) { 
         let obj = sidebar[category];
         if(obj["single"]){
@@ -12,7 +12,7 @@
             </a>
             <%
         }else{
-            let check = helper.checkpageModule(category,pageTitle);
+            let check = helper.checkpageModule(category,pageTitle,'user');
             %>
             <div class="mmenu flex flex-col gap-1 cursor-pointer ">
                 <div class="smenu flex p-[10px]  pl-[20px] items-center rounded-r-3xl font-bold <%=check?'s-selected':''%>">
